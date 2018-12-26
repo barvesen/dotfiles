@@ -13,7 +13,7 @@ def install_linux_system_packages(packages):
         raise Exception('Current linux OS not supported.')
 
 def install_system_packages(packages):
-    if platform.system == 'Linux'
+    if platform.system == 'Linux':
         install_linux_system_packages(packages)
     else:
         raise Exception('Current system not supported.')
