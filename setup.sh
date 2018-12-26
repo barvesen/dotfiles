@@ -34,7 +34,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
         >&2 echo "Error: Currently only supports Ubuntu for linux"
     fi
     git clone https://github.com/barvesen/dotfiles.git ./.dotfiles
-    python ./.dotfiles/setup.py
+    python3 ./.dotfiles/setup.py
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
         >&2 echo "Error: Does not currently support MacOS"
