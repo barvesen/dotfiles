@@ -28,8 +28,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     
     # Install git
     if [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Debian" ]]; then
-        apt-get update
-        apt-get install -y git
+        sudo apt-get update
+        sudo apt-get install -y git
     else
         >&2 echo "Error: Currently only supports Ubuntu for linux"
     fi
