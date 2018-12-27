@@ -1,5 +1,28 @@
 import platform
 import subprocess
+import contextlib
+import os
+import shutil
+import tempfile
+
+@contextlib.contextmanager
+def cd(newdir, cleanup=lambda: True):
+    prevdir = os.getcwd()
+    os.chdir(os.path.expanduser(newdir))
+    try:
+        yield
+    finally:
+        os.chdir(prevdir)
+        cleanup()
+
+@contextlib.contextmanager
+def tempdir():
+    dirpath = tempfile.mkdtemp()
+    def cleanup():
+        shutil.rmtree(dirpath)
+    with cd(dirpath, cleanup):
+        yield dirpath
+
 
 def install_apt_packages(packages):
     subprocess.check_call('sudo apt-get update'.split())
@@ -13,4 +36,6 @@ def install_system_packages(packages):
         raise Exception('Current linux OS not supported.')
 
 def install_rust():
-    subprocess.check_call('curl https://sh.rustup.rs -sSf | sh -s -- -y'.split())
+    with tempdir() as dirpath:
+        subprocess.check_call('curl https://sh.rustup.rs -sSf -o {}'.format(os.path.join(dirpath, 'rustup.sh')).split())
+        subprocess.check_call('sh rustup.sh -y'.split(), cwd=dirpath)
