@@ -39,3 +39,8 @@ def install_rust():
     with tempdir() as dirpath:
         subprocess.check_call('curl https://sh.rustup.rs -sSf -o {}'.format(os.path.join(dirpath, 'rustup.sh')).split())
         subprocess.check_call('sh rustup.sh -y'.split(), cwd=dirpath)
+
+def install_alacritty():
+    with tempdir() as dirpath:
+        subprocess.check_call('git clone https://github.com/jwilm/alacritty.git'.split(), cwd=dirpath)
+        subprocess.check_call('cargo build --release', cwd=os.path.join(dirpath, alacritty))
