@@ -43,4 +43,4 @@ def install_rust():
 def install_alacritty():
     with tempdir() as dirpath:
         subprocess.check_call('git clone https://github.com/jwilm/alacritty.git'.split(), cwd=dirpath)
-        subprocess.check_call('cargo build --release', cwd=os.path.join(dirpath, alacritty))
+        subprocess.check_call('{} build --release'.format(os.path.join(os.path.expanduser("~"), '.cargo', 'bin', 'cargo')).split(), cwd=os.path.join(dirpath, 'alacritty'))
