@@ -1,7 +1,17 @@
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !python3 ./install.py --all
+  endif
+endfunction
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
-Plug 'valloric/youcompleteme'
+Plug 'valloric/youcompleteme', { 'do': function('BuildYCM') }
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 
