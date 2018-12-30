@@ -43,6 +43,7 @@ def linux_setup():
     os_utils.install_python3_packages(packages)
     os_utils.install_npm_packages(packages)
     os_utils.install_rust()
+    os_utils.install_vim_plug()
     # os_utils.install_alacritty()
     os_utils.stow_directories(stow_dirs)
 

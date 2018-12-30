@@ -45,6 +45,9 @@ def install_python3_packages(packages):
 def install_npm_packages(packages):
     subprocess.check_call('npm install -g {}'.format(' '.join(packages['npm_packages'])).split())
 
+def install_vim_plug():
+    subprocess.check_call('curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.split())
+
 def install_rust():
     with tempdir() as dirpath:
         subprocess.check_call('curl https://sh.rustup.rs -sSf -o {}'.format(os.path.join(dirpath, 'rustup.sh')).split())
