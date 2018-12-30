@@ -5,22 +5,45 @@ if platform.system() == 'Linux':
 else:
     raise Exception('Current system not supported.')
 
-linux_packages = [
-    'curl',
-    'vim',
-    'neovim',
-    'neovim-qt',
-    'htop',
-    'cmake',
-    'libfreetype6-dev',
-    'libfontconfig1-dev',
-    'xclip'
+packages = {
+    'linux_packages': [
+        'cmake',
+        'curl',
+        'golang-go',
+        'vim',
+        'neovim',
+        'neovim-qt',
+        'nodejs',
+        'htop',
+        'libfreetype6-dev',
+        'libfontconfig1-dev',
+        'xclip'
+    ],
+    'debian_packages': [
+        'build-essential',
+        'openjdk-8-jdk',
+        'python3-dev'
+    ],
+    'python_packages': [
+        'dploy'
+    ],
+    'npm_packages': [
+        'typescript'
+    ]
+}
+
+stow_dirs = [
+    'nvim'
 ]
 
 def linux_setup():
-    os_utils.install_system_packages(linux_packages)
+    os_utils.install_system_packages(packages)
+    os_utils.install_python3_packages(packages)
+    os_utils.install_npm_packages(packages)
     os_utils.install_rust()
-    os_utils.install_alacritty()
+    # os_utils.install_alacritty()
+    os_utils.stow_directories(stow_dirs)
+
 
 if __name__ == '__main__':
     linux_setup()
