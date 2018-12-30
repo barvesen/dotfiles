@@ -49,8 +49,8 @@ def install_npm_packages(packages):
 
 def install_vim_plug():
     # subprocess.check_call('curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.split())
-    print('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')))
-    subprocess.check_call('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')).split())
+    print('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(os.path.join(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')))
+    subprocess.check_call('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(os.path.join(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')).split())
     subprocess.check_call('sudo chown -R {0}:{0} {1}'.format(user_name, os.path.join(user_path, '.local', 'share', 'nvim')))
 
 def install_rust():
@@ -61,10 +61,10 @@ def install_rust():
 def install_alacritty():
     with tempdir() as dirpath:
         subprocess.check_call('git clone https://github.com/jwilm/alacritty.git'.split(), cwd=dirpath)
-        subprocess.check_call('{} build --release'.format(user_path, '.cargo', 'bin', 'cargo')).split(), cwd=os.path.join(dirpath, 'alacritty'))
+        subprocess.check_call('{} build --release'.format(os.path.join(user_path, '.cargo', 'bin', 'cargo')).split(), cwd=os.path.join(dirpath, 'alacritty'))
 
 def stow_directories(stow_directories):
     importlib.reload(site)
     globals()['dploy'] = importlib.import_module('dploy')
     for directory in stow_directories:
-        dploy.stow([os.path.join(dir_path, directory)], os.path.expanduser("~"), is_silent=False)
+        dploy.stow([os.path.join(dir_path, directory)], user_path, is_silent=False)
