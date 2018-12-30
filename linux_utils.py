@@ -8,6 +8,8 @@ import shutil
 import tempfile
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
+user_path = os.path.join(os.path.expanduser("~")
+user_name = user_path.split('/')[-1]
 
 @contextlib.contextmanager
 def cd(newdir, cleanup=lambda: True):
@@ -47,8 +49,9 @@ def install_npm_packages(packages):
 
 def install_vim_plug():
     # subprocess.check_call('curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.split())
-    print('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(os.path.join(os.path.expanduser("~"), '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')))
-    subprocess.check_call('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(os.path.join(os.path.expanduser("~"), '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')).split())
+    print('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')))
+    subprocess.check_call('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')).split())
+    subprocess.check_call('sudo chown -R {0}:{0} {1}'.format(user_name, os.path.join(user_path, '.local', 'share', 'nvim')))
 
 def install_rust():
     with tempdir() as dirpath:
@@ -58,7 +61,7 @@ def install_rust():
 def install_alacritty():
     with tempdir() as dirpath:
         subprocess.check_call('git clone https://github.com/jwilm/alacritty.git'.split(), cwd=dirpath)
-        subprocess.check_call('{} build --release'.format(os.path.join(os.path.expanduser("~"), '.cargo', 'bin', 'cargo')).split(), cwd=os.path.join(dirpath, 'alacritty'))
+        subprocess.check_call('{} build --release'.format(user_path, '.cargo', 'bin', 'cargo')).split(), cwd=os.path.join(dirpath, 'alacritty'))
 
 def stow_directories(stow_directories):
     importlib.reload(site)

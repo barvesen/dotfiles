@@ -22,13 +22,15 @@ packages = {
     ],
     'debian_packages': [
         'build-essential',
+        'fonts-powerline',
         'mono-complete',
         'openjdk-8-jdk',
         'python3-dev',
         'python3-pip'
     ],
     'python_packages': [
-        'dploy'
+        'dploy',
+        'future'
     ],
     'npm_packages': [
         'typescript'
