@@ -8,7 +8,7 @@ import shutil
 import tempfile
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-user_path = os.path.join(os.path.expanduser("~")
+user_path = os.path.join(os.path.expanduser("~"))
 user_name = user_path.split('/')[-1]
 
 @contextlib.contextmanager
