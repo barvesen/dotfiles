@@ -14,6 +14,7 @@ packages = {
         'neovim',
         'neovim-qt',
         'nodejs',
+        'npm',
         'htop',
         'libfreetype6-dev',
         'libfontconfig1-dev',
