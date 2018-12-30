@@ -31,8 +31,8 @@ def tempdir():
 
 
 def install_apt_packages(packages):
-    subprocess.check_call('sudo apt-get update'.split())
-    subprocess.check_call('sudo apt-get install -y {}'.format(' '.join(packages['linux_packages']+packages['debian_packages'])).split())
+    subprocess.check_call('sudo apt update'.split())
+    subprocess.check_call('sudo apt install -y {}'.format(' '.join(packages['linux_packages']+packages['debian_packages'])).split())
 
 def install_system_packages(packages):
     distribution = platform.linux_distribution()[0]
@@ -51,7 +51,7 @@ def install_vim_plug():
     # subprocess.check_call('curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.split())
     print('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(os.path.join(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')))
     subprocess.check_call('curl -fLo {} --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'.format(os.path.join(user_path, '.local', 'share', 'nvim', 'site', 'autoload', 'plug.vim')).split())
-    subprocess.check_call('sudo chown -R {0}:{0} {1}'.format(user_name, os.path.join(user_path, '.local', 'share', 'nvim')))
+    subprocess.check_call('sudo chown -R {0}:{0} {1} '.format(user_name, os.path.join(user_path, '.local', 'share', 'nvim')))
 
 def install_rust():
     with tempdir() as dirpath:
