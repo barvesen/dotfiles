@@ -22,7 +22,8 @@ packages = {
     'debian_packages': [
         'build-essential',
         'openjdk-8-jdk',
-        'python3-dev'
+        'python3-dev',
+        'python3-pip'
     ],
     'python_packages': [
         'dploy'
