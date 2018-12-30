@@ -22,6 +22,7 @@ packages = {
     ],
     'debian_packages': [
         'build-essential',
+        'mono-complete',
         'openjdk-8-jdk',
         'python3-dev',
         'python3-pip'
