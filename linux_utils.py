@@ -68,3 +68,6 @@ def stow_directories(stow_directories):
     globals()['dploy'] = importlib.import_module('dploy')
     for directory in stow_directories:
         dploy.stow([os.path.join(dir_path, directory)], user_path, is_silent=False)
+
+def reboot():
+    subprocess.check_call('sudo shutdown -r now'.split())
