@@ -35,6 +35,8 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     fi
     git clone https://github.com/barvesen/dotfiles.git ./.dotfiles
     sudo python3 ./.dotfiles/setup.py
+    sudo chown -R $SUDO_USER:$SUDO_USER ~
+    sudo shutdown -r now
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
         >&2 echo "Error: Does not currently support MacOS"
