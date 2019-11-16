@@ -27,7 +27,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     fi
     
     # Install git
-    if [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Debian" ]]; then
+    if [[ "$OS" == "Ubuntu" ]] || [[ "$OS" == "Debian" ]] || [[ "$OS" == "elementary" ]]; then
         sudo apt-get update
         sudo apt-get install -y git
     else
