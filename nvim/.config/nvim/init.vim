@@ -23,7 +23,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'ianks/gruvbox'
 " Plug 'sonph/onehalf'
 " Plug 'arcticicestudio/nord-vim'
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'chriskempson/base16-vim'
 
 call plug#end()
    
@@ -49,8 +50,8 @@ set mouse=a           "turns on mouse support
 set number
 set cursorline
 set nowrap           "no line wrapping
-colorscheme dracula  "use the theme onehalfdark
-set background=dark "use the light version of gruvbox
+colorscheme base16-default-dark  "use the theme onehalfdark
+" set background=dark "use the light version of gruvbox
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Key bindings
